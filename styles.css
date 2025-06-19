@@ -5,38 +5,81 @@
 }
 
 body {
-    font-family: 'Noto Serif KR', serif;
-    line-height: 1.6;
+    font-family: 'Noto Sans KR', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
     color: #333;
-    background-color: #fff;
+    line-height: 1.6;
+    position: relative;
+    overflow-x: hidden;
 }
 
 .container {
-    max-width: 100%;
-    padding: 20px;
+    width: 100%;
+    max-width: 500px;
     margin: 0 auto;
+    background-color: white;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    z-index: 2;
+    overflow: hidden;
+}
+
+.container::before {
+    content: '';
+    position: absolute;
+    background-image: url('image/blossom.gif');
+    inset: 0;
+    opacity: 0.5;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.container > * {
+    position: relative;
+    z-index: 2;
 }
 
 .main-header {
-    text-align: center;
-    padding: 40px 0;
+    width: 100%;
+    padding: 20px;
+    position: relative;
+    /* background-image: url('image/heart.png'); */
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: contain;
 }
 
 .main-header h1 {
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-    font-weight: 700;
+    margin: 0;
+    text-align: center;
+    color: #333;
+    font-size: 2rem;
+    margin-bottom: 10px;
+    position: relative;
+    z-index: 1;
 }
 
-.date, .location {
+.main-header .date {
+    text-align: center;
     font-size: 1.2rem;
-    margin: 10px 0;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.main-header .location {
+    text-align: center;
+    font-size: 1rem;
+    color: #666;
 }
 
 .invitation-text {
     text-align: center;
-    padding: 40px 20px;
+    padding: 20px;
     line-height: 2;
+    font-size: 0.8rem;
 }
 
 .calendar {
@@ -162,8 +205,7 @@ body {
 }
 
 .map-image {
-    min-width: 400px;
-    width: 500px;
+    max-width: 400px;
     object-fit: cover;
 }
 
@@ -332,23 +374,37 @@ button:hover {
     color: #333;
 }
 
+@media (min-width: 769px) {
+    body {
+        padding: 20px;
+    }
+    
+    .container {
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+}
+
 @media (max-width: 768px) {
+    body {
+        padding: 0;
+    }
+    
+    .container {
+        box-shadow: none;
+    }
+    
     .main-header h1 {
-        font-size: 2rem;
+        font-size: 1.8rem;
     }
     
-    .date, .location {
-        font-size: 1rem;
+    .main-header .date {
+        font-size: 1.1rem;
     }
     
-    .couple-info {
-        flex-direction: column;
+    .main-header .location {
+        font-size: 0.9rem;
     }
-    
-    .groom, .bride {
-        margin-bottom: 30px;
-    }
-    
+
     .accounts {
         flex-direction: column;
     }
