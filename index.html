@@ -7,16 +7,18 @@
     <link rel="icon" href="image/favicon.ico">
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;700&display=swap" rel="stylesheet">
+    <meta name="robots" content="noindex, nofollow">
 </head>
 <body>
     <div class="container">
         <div class="main-header">
             <h1>두안 & 성윤</h1>
+            <h3>결혼식에 초대합니다</h3>
             <br>
             <div class="date">2024.09.06</div>
             <div class="location">여의도 웨딩 여율리 5층 라온제나홀</div>
         </div>
-        
+        <br>
         <div class="invitation-text">
             <p>소중한 인연으로 만나 평생의 연인이 되고자 합니다.</p>
             <p>세심하게 살피며 따뜻한 마음으로 서로를 위하며 살겠습니다.</p>
@@ -35,7 +37,7 @@
         </div>
 
         <div class="gallery">
-            <h2>갤러리</h2>
+            <h2 class="title">갤러리</h2>
             <div class="gallery-grid">
                 <!-- <div class="gallery-item">
                     <img src="images/photo1.jpg" alt="우리의 추억 1">
@@ -105,9 +107,20 @@
 
 
         <div class="location-info">
-            <h2>오시는 길</h2>
+            <h2 class="title">오시는 길</h2>
             <div class="map-container">
-                <img src="image/location.png" alt="Location Map" class="map-image">
+                <!-- 카카오맵  -->
+                <div id="daumRoughmapContainer1750637871223" class="root_daum_roughmap root_daum_roughmap_landing"></div>
+                <script charset="UTF-8" class="daum_roughmap_loader_script" src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
+                <script charset="UTF-8">
+                    new daum.roughmap.Lander({
+                        "timestamp" : "1750637871223",
+                        "key" : "425obscysng",
+                        "mapWidth" : "500",
+                        "mapHeight" : "360"
+                    }).render();
+                </script>
+                <!-- <img src="image/location.png" alt="Location Map" class="map-image"> -->
             </div>
             <div class="transportation">
                 <h4>주소</h4>
@@ -129,7 +142,7 @@
         </div>
         
         <div class="account-info">
-            <h2>마음 전하실 곳</h2>
+            <h2 class="title">마음 전하실 곳</h2>
             <div class="accounts">
                 <div class="groom-accounts">
                     <h4>신랑측</h4>

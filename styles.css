@@ -43,18 +43,12 @@ body {
 }
 
 .main-header {
-    width: 100%;
-    padding: 20px;
-    position: relative;
-    /* background-image: url('image/heart.png'); */
-    background-repeat: no-repeat;
-    background-position: center top;
-    background-size: contain;
+    padding-top: 60px;
+    text-align: center;
 }
 
 .main-header h1 {
     margin: 0;
-    text-align: center;
     color: #333;
     font-size: 2rem;
     margin-bottom: 10px;
@@ -66,7 +60,6 @@ body {
     text-align: center;
     font-size: 1.2rem;
     color: #666;
-    margin-bottom: 20px;
 }
 
 .main-header .location {
@@ -79,16 +72,19 @@ body {
     text-align: center;
     padding: 20px;
     line-height: 2;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
+}
+
+.title {
+    text-align: center;
 }
 
 .calendar {
     padding: 40px 20px;
-    text-align: center;
 }
 
-.calendar h3 {
-    margin-bottom: 20px;
+.calendar h3, .calendar h4 {
+    text-align: center;
 }
 
 .calendar-grid {
