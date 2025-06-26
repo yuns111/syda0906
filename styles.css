@@ -196,7 +196,7 @@ body {
 
 .map-container {
     height: 400px;
-    margin-bottom: 20px;
+    margin: 0 -20px;
     text-align: center;
 }
 
