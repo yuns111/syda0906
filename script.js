@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const loadMoreBtn = document.getElementById('load-more');
     const hiddenItems = document.querySelectorAll('.gallery-item.hidden');
     let currentIndex = 0;
-    const itemsPerLoad = 3; // 한 번에 3개씩 추가
+    const itemsPerLoad = 4; // 한 번에 4개씩 추가
 
     if (loadMoreBtn) {
         loadMoreBtn.addEventListener('click', function() {
@@ -113,6 +113,68 @@ document.addEventListener('DOMContentLoaded', function() {
                     dropdownBtns[index].textContent = '계좌번호 보기 ▼';
                 }
             });
+        }
+    });
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    const modal = document.getElementById('galleryModal');
+    const modalImg = document.getElementById('modalImage');
+    const galleryImages = document.querySelectorAll('.gallery-grid .gallery-item img');
+    const closeBtn = document.querySelector('.close-modal');
+    const prevBtn = document.querySelector('.prev-slide');
+    const nextBtn = document.querySelector('.next-slide');
+
+    let currentIndex = 0;
+    const imageSources = Array.from(galleryImages).map(img => img.src);
+
+    function openModal(index) {
+        currentIndex = index;
+        modalImg.src = imageSources[currentIndex];
+        modal.style.display = 'flex';
+    }
+
+    function closeModal() {
+        modal.style.display = 'none';
+    }
+
+    function showNextImage() {
+        currentIndex = (currentIndex + 1) % imageSources.length;
+        modalImg.src = imageSources[currentIndex];
+    }
+
+    function showPrevImage() {
+        currentIndex = (currentIndex - 1 + imageSources.length) % imageSources.length;
+        modalImg.src = imageSources[currentIndex];
+    }
+
+    galleryImages.forEach((img, index) => {
+        img.addEventListener('click', () => {
+            openModal(index);
+        });
+    });
+
+    closeBtn.addEventListener('click', closeModal);
+    prevBtn.addEventListener('click', showPrevImage);
+    nextBtn.addEventListener('click', showNextImage);
+
+    // 모달 외부 클릭 시 닫기
+    window.addEventListener('click', (event) => {
+        if (event.target === modal) {
+            closeModal();
+        }
+    });
+
+    // 키보드(Esc, 화살표)로 제어
+    document.addEventListener('keydown', (event) => {
+        if (modal.style.display === 'flex') {
+            if (event.key === 'Escape') {
+                closeModal();
+            } else if (event.key === 'ArrowLeft') {
+                showPrevImage();
+            } else if (event.key === 'ArrowRight') {
+                showNextImage();
+            }
         }
     });
 }); 
