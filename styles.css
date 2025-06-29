@@ -308,9 +308,21 @@ button:hover {
 }
 
 .thanks {
-    padding: 10px;
+    /*padding: 60px;*/
     padding-bottom: 50px;
     text-align: center;
+    background-image: url("image/photo/footer.jpg");
+    background-size: cover;
+    height: 350px;
+    mask-image: linear-gradient(to top, black 60%, transparent 100%);
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+}
+
+.thanks-message {
+    padding-top: 90px;
 }
 
 .no-flower {
