@@ -207,11 +207,6 @@ body {
     text-align: center;
 }
 
-.map-image {
-    max-width: 400px;
-    object-fit: cover;
-}
-
 .transportation {
     padding: 20px;
 }
