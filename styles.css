@@ -45,8 +45,16 @@ body {
     text-align: center;
 }
 
+.main-image-wrapper {
+    width: 100%;
+    overflow: hidden;       /* 부모보다 큰 이미지가 잘리도록 */
+    text-align: center;     /* inline-block 중앙 정렬 */
+}
+
 .main-image {
-    max-width: 500px;
+    width: 100%;            /* 가득 차게 */
+    max-width: none;        /* 축소를 제한하지 않음 */
+    display: inline-block;  /* 중앙 정렬을 위해 */
     mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
     -webkit-mask-size: 100% 100%;
     mask-size: 100% 100%;
@@ -311,18 +319,34 @@ button:hover {
     /*padding: 60px;*/
     padding-bottom: 50px;
     text-align: center;
-    background-image: url("image/photo/footer.jpg");
-    background-size: cover;
-    height: 350px;
+    position: relative;
+    width: 100%;
+    height: auto;
+}
+
+.thanks-image {
+    width: 100%;
     mask-image: linear-gradient(to top, black 60%, transparent 100%);
     -webkit-mask-size: 100% 100%;
     mask-size: 100% 100%;
     -webkit-mask-repeat: no-repeat;
     mask-repeat: no-repeat;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    min-width: 300px;
+    height: auto;
+    z-index: 1;
 }
 
 .thanks-message {
-    padding-top: 90px;
+    padding-top: 20px;
+    width: 100%;
+    font-size: 0.9rem;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index:30;
 }
 
 .no-flower {
