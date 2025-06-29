@@ -66,54 +66,64 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// Copy address functionality
-function copyAddress() {
-    const address = document.querySelector('.address').textContent;
-    const copyBtn = document.querySelector('.copy-btn');
-    
-    // Copy to clipboard
-    navigator.clipboard.writeText(address).then(() => {
+function copy(accountNumber, button) {
+    navigator.clipboard.writeText(accountNumber).then(() => {
+        // Use the passed button element
+        const originalText = button.textContent;
+        
         // Change button text and style
-        copyBtn.textContent = '복사됨';
-        copyBtn.classList.add('copied');
+        button.textContent = '복사됨';
+        button.classList.add('copied');
         
         // Reset button after 2 seconds
         setTimeout(() => {
-            copyBtn.textContent = '복사';
-            copyBtn.classList.remove('copied');
+            button.textContent = originalText;
+            button.classList.remove('copied');
         }, 2000);
     }).catch(err => {
-        console.error('Failed to copy text: ', err);
-        alert('주소 복사에 실패했습니다.');
+        console.error('Failed to copy account number: ', err);
+        alert('계좌번호 복사에 실패했습니다.');
     });
 }
 
 // Initialize calendar when the page loads
 document.addEventListener('DOMContentLoaded', generateCalendar);
 
-// 계좌번호 드롭다운 기능
+// 계좌번호 섹션 토글 기능
 document.addEventListener('DOMContentLoaded', function() {
-    const dropdownBtns = document.querySelectorAll('.dropdown-btn');
-    const dropdownContents = document.querySelectorAll('.dropdown-content');
+    const sectionToggles = document.querySelectorAll('.section-toggle');
+    const sectionContents = document.querySelectorAll('.section-content');
 
-    dropdownBtns.forEach((btn, index) => {
+    sectionToggles.forEach((btn, index) => {
         btn.addEventListener('click', function() {
-            const content = dropdownContents[index];
-            content.classList.toggle('show');
-            this.textContent = content.classList.contains('show') ? '계좌번호 숨기기 ▲' : '계좌번호 보기 ▼';
-        });
-    });
-
-    // 드롭다운 외부 클릭시 닫기
-    document.addEventListener('click', function(event) {
-        if (!event.target.matches('.dropdown-btn')) {
-            dropdownContents.forEach((content, index) => {
-                if (content.classList.contains('show')) {
-                    content.classList.remove('show');
-                    dropdownBtns[index].textContent = '계좌번호 보기 ▼';
+            const content = sectionContents[index];
+            const section = this.closest('.account-section');
+            
+            // 다른 섹션들을 모두 닫기
+            sectionContents.forEach((otherContent, otherIndex) => {
+                if (otherIndex !== index && otherContent.classList.contains('show')) {
+                    otherContent.classList.remove('show');
+                    const otherBtnText = sectionToggles[otherIndex].textContent;
+                    sectionToggles[otherIndex].textContent = otherBtnText.replace('숨기기 ▲', '보기 ▼');
+                    sectionToggles[otherIndex].closest('.account-section').classList.remove('expanded');
                 }
             });
-        }
+            
+            // 현재 섹션 토글
+            content.classList.toggle('show');
+            const isShowing = content.classList.contains('show');
+            
+            if (isShowing) {
+                section.classList.add('expanded');
+            } else {
+                section.classList.remove('expanded');
+            }
+            
+            this.textContent = this.textContent.replace(
+                isShowing ? '보기 ▼' : '숨기기 ▲',
+                isShowing ? '숨기기 ▲' : '보기 ▼'
+            );
+        });
     });
 });
 
