@@ -489,12 +489,6 @@ button:hover {
 
     .map-container {
         height: auto;
-        padding: 0 10px;
-    }
-
-    .map-image {
-        width: 100%;
-        min-width: auto;
     }
 
     .transportation {
