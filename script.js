@@ -138,6 +138,13 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentIndex = 0;
     const imageSources = Array.from(galleryImages).map(img => img.src);
 
+    // 터치/스와이프 관련 변수
+    let startX = 0;
+    let startY = 0;
+    let moveX = 0;
+    let moveY = 0;
+    let isSwiping = false;
+
     function openModal(index) {
         currentIndex = index;
         modalImg.src = imageSources[currentIndex];
@@ -187,4 +194,54 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
     });
+
+    // 터치 이벤트 처리
+    modal.addEventListener('touchstart', (event) => {
+        if (modal.style.display === 'flex' && event.touches.length === 1) {
+            startX = event.touches[0].clientX;
+            startY = event.touches[0].clientY;
+            isSwiping = true;
+        }
+    }, { passive: true });
+
+    modal.addEventListener('touchmove', (event) => {
+        if (!isSwiping || modal.style.display !== 'flex') return;
+        
+        moveX = event.touches[0].clientX;
+        moveY = event.touches[0].clientY;
+        
+        // 수직 스크롤을 방지하기 위해 수평 스와이프만 처리
+        const deltaX = Math.abs(moveX - startX);
+        const deltaY = Math.abs(moveY - startY);
+        
+        if (deltaX > deltaY && deltaX > 10) {
+            event.preventDefault();
+        }
+    }, { passive: false });
+
+    modal.addEventListener('touchend', (event) => {
+        if (!isSwiping || modal.style.display !== 'flex') return;
+        
+        const deltaX = moveX - startX;
+        const deltaY = Math.abs(moveY - startY);
+        const minSwipeDistance = 50;
+        
+        // 수평 스와이프가 수직 스와이프보다 크고, 최소 거리를 만족하는 경우
+        if (Math.abs(deltaX) > deltaY && Math.abs(deltaX) > minSwipeDistance) {
+            if (deltaX > 0) {
+                // 오른쪽 스와이프 - 이전 이미지
+                showPrevImage();
+            } else {
+                // 왼쪽 스와이프 - 다음 이미지
+                showNextImage();
+            }
+        }
+        
+        // 초기화
+        isSwiping = false;
+        startX = 0;
+        startY = 0;
+        moveX = 0;
+        moveY = 0;
+    }, { passive: true });
 }); 
