@@ -6,8 +6,8 @@
 
 body {
     font-family: "Hi Melody", sans-serif;
-    font-weight: 400;
     font-style: normal;
+    font-size: 1.2rem;
     margin: 0;
     padding: 0;
     background-color: #f5f5f5;
@@ -20,6 +20,8 @@ body {
 }
 
 button {
+    font-family: "Hi Melody", sans-serif;
+    font-style: normal;
     text-decoration: none;
     -webkit-appearance: none;
     color: black;
@@ -88,7 +90,7 @@ button {
     text-align: center;
     padding: 20px;
     line-height: 2;
-    font-size: 0.9rem;
+    font-size: 1rem;
 }
 
 .title {
@@ -358,7 +360,7 @@ button:hover {
     padding: 10px;
     padding-bottom: 50px;
     text-align: center;
-    font-size: 0.9rem;
+    font-size: 1rem;
 }
 
 .account-section {
@@ -478,11 +480,11 @@ button:hover {
     }
     
     .main-header .date {
-        font-size: 1.1rem;
+        font-size: 1.2rem;
     }
     
     .main-header .location {
-        font-size: 0.9rem;
+        font-size: 1rem;
     }
 
     .accounts {
@@ -502,7 +504,7 @@ button:hover {
     }
 
     .transportation p {
-        font-size: 0.9rem;
+        font-size: 1rem;
     }
 
     .section {
